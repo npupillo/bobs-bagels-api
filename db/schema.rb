@@ -41,9 +41,9 @@ ActiveRecord::Schema.define(version: 20150312180316) do
     t.string   "name"
     t.decimal  "price"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "product_type"
   end
 
   add_foreign_key "order_items", "orders"
