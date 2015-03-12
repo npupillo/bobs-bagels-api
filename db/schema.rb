@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312171424) do
+ActiveRecord::Schema.define(version: 20150312170552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,15 +25,6 @@ ActiveRecord::Schema.define(version: 20150312171424) do
   end
 
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
-
-  create_table "order_statuses", force: :cascade do |t|
-    t.string   "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "order_id"
-  end
-
-  add_index "order_statuses", ["order_id"], name: "index_order_statuses_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "taxes"
@@ -50,12 +41,7 @@ ActiveRecord::Schema.define(version: 20150312171424) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "product_id"
   end
 
-  add_index "products", ["product_id"], name: "index_products_on_product_id", using: :btree
-
   add_foreign_key "order_items", "orders"
-  add_foreign_key "order_statuses", "orders"
-  add_foreign_key "products", "products"
 end
