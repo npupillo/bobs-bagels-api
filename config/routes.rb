@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-	resources :order_statuses
-		resources :orders, shallow: true do
-			resources :order_items do
-				resources :products
-				end
+	resources :order_statuses, shallow: true do
+		resources :orders do
+			resources :order_items
 			end
 		end
+	resources :products
+end
