@@ -20,28 +20,31 @@ ActiveRecord::Schema.define(version: 20150312170552) do
     t.integer  "quantity"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "product_id"
     t.integer  "order_id"
-    t.integer  "total_price"
+    t.decimal  "total_price"
   end
 
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
+  add_index "order_items", ["product_id"], name: "index_order_items_on_product_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "taxes"
-    t.integer  "delivery_cost"
-    t.integer  "subtotal"
-    t.integer  "total"
+    t.decimal  "taxes"
+    t.decimal  "delivery_cost"
+    t.decimal  "subtotal"
+    t.decimal  "total"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
-    t.integer  "price"
+    t.decimal  "price"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
   add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
 end

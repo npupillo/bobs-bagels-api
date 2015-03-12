@@ -1,5 +1,5 @@
 class AddTotalPriceToOrderItem < ActiveRecord::Migration
   def change
-	  add_column :order_items, :total_price, :integer
+	  add_column :order_items, :total_price, :decimal
   end
 end
