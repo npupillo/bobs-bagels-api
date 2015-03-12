@@ -14,8 +14,7 @@ product_11 = Product.create!(name: 'Party Box', description: '25 bagels plus pla
 product_12 = Product.create!(name: 'The Somerville', description: 'whole wheat bagel with avocado, tomato, cucumber, sprouts, tofutti cream cheese', price: 675, product_type: 'a')
 product_13 = Product.create!(name: 'The North End', description: 'onion bagel with roast beef, tomato, red onions, asiago cheese, provolone cheese', price: 650, product_type: 'a')
 product_14 = Product.create!(name: 'The South End', description: 'sesame bagel with corn beef, cole slaw, swiss cheese, spicy mustard', price: 650, product_type: 'a')
-product_15 = Product.create!(name: 'The Hub', description: 'plain bagel with turkey, garlic mayonaisse, tomato, cucumber, sprouts', price: 600
-, product_type: 'a')
+product_15 = Product.create!(name: 'The Hub', description: 'plain bagel with turkey, garlic mayonaisse, tomato, cucumber, sprouts', price: 600, product_type: 'a')
 product_16 = Product.create!(name: 'The Brookline', description: 'poppyseed bagel with cream cheese, tomato, red onions, smoked salmon', price: 750, product_type: 'a')
 product_17 = Product.create!(name: 'Fountain Soda small', description: 'Coke', price: 275, product_type: 'd')
 product_18 = Product.create!(name: 'Fountain Soda small', description: 'Diet Coke', price: 275, product_type: 'd')
