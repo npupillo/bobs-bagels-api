@@ -38,4 +38,5 @@ class ProductsController < ApplicationController
 	def product_params
 		params.require(:product).permit(:name, :price, :description) # reminder, ingredients can be passed here as an array.
 	end
+end
 
