@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312231406) do
+ActiveRecord::Schema.define(version: 20150313185219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,17 +53,23 @@ ActiveRecord::Schema.define(version: 20150312231406) do
     t.decimal  "delivery_cost"
     t.decimal  "subtotal"
     t.decimal  "total"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.decimal  "discount"
+    t.string   "delivery_type"
+    t.string   "delivery_addr_street_1"
+    t.string   "delivery_addr_street_2"
+    t.string   "delivery_addr_zipcode"
+    t.string   "delivery_addr_phone"
   end
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.decimal  "price"
     t.string   "description"
+    t.string   "product_type"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.string   "product_type"
   end
 
   create_table "users", force: :cascade do |t|
@@ -71,9 +77,12 @@ ActiveRecord::Schema.define(version: 20150312231406) do
     t.string   "last_name"
     t.string   "email"
     t.string   "phone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "order_id"
+    t.string   "my_delivery_addr_street_1"
+    t.string   "my_delivery_addr_street_2"
+    t.string   "my_delivery_addr_zipcode"
   end
 
   add_index "users", ["order_id"], name: "index_users_on_order_id", using: :btree
