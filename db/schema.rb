@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20150313185219) do
     t.decimal  "total"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.string   "discount"
+    t.decimal  "discount"
     t.string   "delivery_type"
     t.string   "delivery_addr_street_1"
     t.string   "delivery_addr_street_2"
