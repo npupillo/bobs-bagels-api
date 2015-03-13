@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313185219) do
+ActiveRecord::Schema.define(version: 20150313183627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,25 +43,27 @@ ActiveRecord::Schema.define(version: 20150313185219) do
     t.string   "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "order_id"
   end
-
-  add_index "order_statuses", ["order_id"], name: "index_order_statuses_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.decimal  "taxes"
     t.decimal  "delivery_cost"
     t.decimal  "subtotal"
     t.decimal  "total"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "order_status_id"
+    t.integer  "user_id"
     t.decimal  "discount"
     t.string   "delivery_type"
-    t.string   "delivery_addr_street_1"
-    t.string   "delivery_addr_street_2"
-    t.string   "delivery_addr_zipcode"
-    t.string   "delivery_addr_phone"
+    t.string   "delivery_phone"
+    t.string   "delivery_address_1"
+    t.string   "delivery_address_2"
+    t.string   "delivery_address_zipcode"
   end
+
+  add_index "orders", ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -77,19 +79,13 @@ ActiveRecord::Schema.define(version: 20150313185219) do
     t.string   "last_name"
     t.string   "email"
     t.string   "phone"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "order_id"
-    t.string   "my_delivery_addr_street_1"
-    t.string   "my_delivery_addr_street_2"
-    t.string   "my_delivery_addr_zipcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "users", ["order_id"], name: "index_users_on_order_id", using: :btree
 
   add_foreign_key "ingredients", "products"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
-  add_foreign_key "order_statuses", "orders"
-  add_foreign_key "users", "orders"
+  add_foreign_key "orders", "order_statuses"
+  add_foreign_key "orders", "users"
 end
