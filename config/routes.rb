@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+	resources :charges
 	resources :order_statuses, only: [:create, :update, :destroy]
 	resources :orders, only: [:create, :update, :destroy] do
 	resources :order_items, only: [:create, :update, :destroy]

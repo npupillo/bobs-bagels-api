@@ -5,6 +5,7 @@ gem 'rails-api'
 gem 'spring', :group => :development
 gem 'pg'
 gem 'rb-readline'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'newrelic_rpm'
 gem 'rack-cors'
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
