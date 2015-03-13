@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20150312231406) do
 
   add_index "users", ["order_id"], name: "index_users_on_order_id", using: :btree
 
+
   add_foreign_key "ingredients", "products"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
