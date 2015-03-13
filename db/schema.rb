@@ -61,9 +61,9 @@ ActiveRecord::Schema.define(version: 20150312231406) do
     t.string   "name"
     t.decimal  "price"
     t.string   "description"
+    t.string   "product_type"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.string   "product_type"
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(version: 20150312231406) do
   end
 
   add_index "users", ["order_id"], name: "index_users_on_order_id", using: :btree
-
 
   add_foreign_key "ingredients", "products"
   add_foreign_key "order_items", "orders"
