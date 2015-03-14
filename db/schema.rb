@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314182628) do
+ActiveRecord::Schema.define(version: 20150314214407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,10 +21,18 @@ ActiveRecord::Schema.define(version: 20150314182628) do
     t.decimal  "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "product_id"
   end
 
-  add_index "ingredients", ["product_id"], name: "index_ingredients_on_product_id", using: :btree
+  create_table "ingredients_and_orders", force: :cascade do |t|
+    t.integer  "order_item_id"
+    t.integer  "ingredient_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "ingredients_and_orders", ["ingredient_id"], name: "index_ingredients_and_orders_on_ingredient_id", using: :btree
+  add_index "ingredients_and_orders", ["order_item_id", "ingredient_id"], name: "index_ingredients_and_orders_on_order_item_id_and_ingredient_id", unique: true, using: :btree
+  add_index "ingredients_and_orders", ["order_item_id"], name: "index_ingredients_and_orders_on_order_item_id", using: :btree
 
   create_table "ingredients_in_products", force: :cascade do |t|
     t.integer  "product_id"
@@ -97,7 +105,6 @@ ActiveRecord::Schema.define(version: 20150314182628) do
     t.datetime "updated_at",      null: false
   end
 
-  add_foreign_key "ingredients", "products"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "order_statuses"
