@@ -15,12 +15,12 @@ class ChargesController < ApplicationController
 		
 		charge = Stripe::Charge.create(
 			:customer => @user.customer.id,
-			:amount => @charge.amount,
+			:amount => amount,
 			:description => 'Rails Stripe customer',
 			:currency => 'usd'
 			)
 
-		if @charge.saveide
+		if @charge.save
 			render json: { charge: @charge }
 		else
 			render json: {message: 'failed', status: 500}
@@ -29,8 +29,17 @@ class ChargesController < ApplicationController
 	
 	def make_charge
 		@charge = Charge.new(charge_params)
+		
+		cart = JSON.parse(@charge.cart)
+		price_array = []
+		cart.each { |i| price_array << i['price'] }
+		price_array.map { |price| price.slice!(0) }
+		price_array.map! { |price| price.to_i * 100 }
+		binding.pry
+		amount = price_array.reduce(:+)
+		
 		Stripe::Charge.create({
-			:amount => @charge.amount,
+			:amount => amount,
 			:currency => "usd",
 			:source => @charge.token, # obtained with Stripe.js
 #			:description => "Charge for #{@user.email}"
@@ -42,6 +51,6 @@ class ChargesController < ApplicationController
 	private
 		
 	def charge_params
-		params.require(:charge).permit(:charge, :amount, :token, :customer_id) #the front end will have to store the customer id
+		params.require(:charge).permit(:charge, :cart, :token) #the front end will have to store the customer id
 	end
 end
