@@ -30,13 +30,7 @@ class ChargesController < ApplicationController
 	def make_charge
 		@charge = Charge.new(charge_params)
 		
-		cart = JSON.parse(@charge.cart)
-		price_array = []
-		cart.each { |i| price_array << i['price'] }
-		price_array.map { |price| price.slice!(0) }
-		price_array.map! { |price| price.to_i * 100 }
-		binding.pry
-		amount = price_array.reduce(:+)
+		@amount = Charge.calculate_cart_total(@charge.cart)
 		
 		Stripe::Charge.create({
 			:amount => @amount,
