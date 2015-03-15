@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314214407) do
+ActiveRecord::Schema.define(version: 20150315183224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bagels", force: :cascade do |t|
+    t.string   "bagel_type"
+    t.decimal  "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "charges", force: :cascade do |t|
     t.integer  "amount"
@@ -61,8 +68,10 @@ ActiveRecord::Schema.define(version: 20150314214407) do
     t.integer  "order_id"
     t.decimal  "total_price"
     t.string   "comment"
+    t.integer  "bagel_id"
   end
 
+  add_index "order_items", ["bagel_id"], name: "index_order_items_on_bagel_id", using: :btree
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
   add_index "order_items", ["product_id"], name: "index_order_items_on_product_id", using: :btree
 
@@ -99,7 +108,10 @@ ActiveRecord::Schema.define(version: 20150314214407) do
     t.string   "product_type"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "bagel_id"
   end
+
+  add_index "products", ["bagel_id"], name: "index_products_on_bagel_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -115,8 +127,10 @@ ActiveRecord::Schema.define(version: 20150314214407) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "order_items", "bagels"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "order_statuses"
   add_foreign_key "orders", "users"
+  add_foreign_key "products", "bagels"
 end
