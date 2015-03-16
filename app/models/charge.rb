@@ -8,4 +8,28 @@ class Charge < ActiveRecord::Base
 		amount = price_array.reduce(:+)
 		return amount
 	end
+	
+
 end
+
+
+
+#	def make_charge_to_user
+#		@user = User.find(params[:token])
+#		@charge = Charge.new(charge_params)
+#		
+#		Stripe::Customer.retrieve(@charge.customer_id)
+#		
+#		charge = Stripe::Charge.create(
+#			:customer => @user.customer.id,
+#			:amount => amount,
+#			:description => 'Rails Stripe customer',
+#			:currency => 'usd'
+#			)
+#
+#		if @charge.save
+#			render json: { charge: @charge }
+#		else
+#			render json: {message: 'failed', status: 500}
+#        end
+#	end

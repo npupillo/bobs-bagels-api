@@ -12,4 +12,19 @@ class User < ActiveRecord::Base
       self.token = SecureRandom.uuid.gsub(/\-/,'')
     end while self.class.exists?(token: token)
   end
+	  
+  def self.store_user_data(chargeData)
+	@customer = Stripe::Customer.create(
+		:email => chargeData.email
+		:card  => chargeData.token
+		)
+	)
+	 render json: @customer.id
+	 @user.find_by(email: params[chargeData.email] << @customer.id
+  end
+
+ self.get_user_data(email)
+	user = User.find_by(email: params[:email])
+	return user.customer_id
+	end
 end
