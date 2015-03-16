@@ -3,11 +3,10 @@ require 'stripe'
 class ChargesController < ApplicationController
 
 	def index
-		@user = User.find_by(token: params[:token]) # this is the user's login token not their stripe token!
 		@charges = Charge.all
 		render json: @charges
 	end
-	
+
 	def make_charge
 		@charge = Charge.new(charge_params)
 		
@@ -21,11 +20,10 @@ class ChargesController < ApplicationController
 				:amount => @amount,
 				:currency => 'usd'
 				)
-			binding.pry
 			user = User.first # this is temporary
 			user.customer_id = customer.id
 			user.save
-		else	
+		else
 			Stripe::Charge.create({
 				:amount => @amount,
 				:currenct => "usd",
@@ -33,10 +31,9 @@ class ChargesController < ApplicationController
 				})
 		end
 	end
-	
+
 	private
-		
+
 	def charge_params
 		params.require(:charge).permit(:charge, :cart, :token, :store_info) #the front end will have to store the customer id
 	end
-end

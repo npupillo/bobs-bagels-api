@@ -11,7 +11,7 @@ gem 'newrelic_rpm'
 gem 'rack-cors', require: 'rack/cors'
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 gem 'nokogiri'
-gem 'bcrypt'
+
 group :development, :test do
   gem 'capybara'
   gem 'rubocop'
