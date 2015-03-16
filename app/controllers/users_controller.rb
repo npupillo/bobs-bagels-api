@@ -12,22 +12,6 @@ class UsersController < ApplicationController
     end
   end
 
-	# def make_user_stripe_customer
-	# 	Stripe::Customer.create(
-	# 		:email => email
-	# 		:card  => params[:stripeToken]
-	# 	  )
-
-	# 	Stripe::Token.create(
-	# 		:card => {
-	# 		:number => card_number,
-	# 		:exp_month => exp_month,
-	# 		:exp_year => exp_year,
-	# 		:cvc => cvc
-	# 	  },
-	# 	)
-	# end
-
   def index
     binding.pry
     render json: User.all, status: :ok

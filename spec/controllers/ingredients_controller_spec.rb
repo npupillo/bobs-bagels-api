@@ -4,7 +4,7 @@ RSpec.describe IngredientsController, :type => :controller do
    describe "GET index" do
 
     it "shows index" do
-        get :index
+        Ingredient.all
         expect(response).to be_success
       end
     end
