@@ -20,6 +20,7 @@ class ChargesController < ApplicationController
 				:amount => @amount,
 				:currency => 'usd'
 				)
+#			@user = @charge.order.user
 			user = User.first # this is temporary
 			user.customer_id = customer.id
 			user.save
