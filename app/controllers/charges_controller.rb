@@ -6,11 +6,11 @@ class ChargesController < ApplicationController
 		@user = User.find_by(token: params[:token]) # this is the user's login token not their stripe token!
 		@charges = Charge.all
 		render json: @charges
-	end
-	
+	end #end index
+
 	def make_charge
 		@charge = Charge.new(charge_params)
-		
+
 		@amount = Charge.calculate_cart_total(@charge.cart)
 
 		if @charge.customer_id == nil
@@ -24,29 +24,30 @@ class ChargesController < ApplicationController
 				})
 				if @charge.store_info == true
 					User.store_user_data(@charge)
-				end		
-		else	
+				end
+		else
 			Stripe::Charge.create({
 				:amount => @amount,
 				:currenct => "usd",
 				:source => @user.customer_id
 				})
-		end
-	end
-	
+		end # end if
+	end # end make_charge
+
 	private
-		
+
 	def charge_params
 		params.require(:charge).permit(:charge, :cart, :token, :store_info) #the front end will have to store the customer id
 	end
-end
+
+end #end ChargesController
 
 #	def make_charge_to_user
 #		@user = User.find(params[:token])
 #		@charge = Charge.new(charge_params)
-#		
+#
 #		Stripe::Customer.retrieve(@charge.customer_id)
-#		
+#
 #		charge = Stripe::Charge.create(
 #			:customer => @user.customer.id,
 #			:amount => amount,
@@ -60,3 +61,8 @@ end
 #			render json: {message: 'failed', status: 500}
 #        end
 #	end
+
+
+
+
+
