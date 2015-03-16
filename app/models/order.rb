@@ -1,3 +1,5 @@
+require 'pry'
+
 class Order < ActiveRecord::Base
 	has_many :order_items
 	belongs_to :order_status
@@ -14,5 +16,15 @@ class Order < ActiveRecord::Base
 
   def calc_delivery
     BOSTONZIPS.include?(self.delivery_address_zipcode) ? self.delivery_cost = 6.00 : self.delivery_cost = 10.00
+  end
+
+  def create_order_items
+    cart = JSON.parse(self.cart)
+    cart.each do |item|
+      @order_item = self.order_items.create!(product_id: item['product_id'], quantity: item['quantity'], bagel_id: item['bagel'])
+      item['ingredients'].each do |ingredient|
+        IngredientsAndOrder.create!(order_item_id: @order_item.id, ingredient_id: ingredient)
+      end
+    end
   end
 end

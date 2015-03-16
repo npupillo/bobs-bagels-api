@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20150316000708) do
     t.decimal  "delivery_cost"
     t.decimal  "subtotal"
     t.decimal  "total"
+    t.string   "cart"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "order_status_id"
