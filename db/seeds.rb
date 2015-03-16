@@ -1,6 +1,22 @@
+Bagel.delete_all
 IngredientsInProduct.delete_all
 Product.delete_all
 Ingredient.delete_all
+OrderItem.delete_all
+Order.delete_all
+OrderStatus.delete_all
+User.delete_all
+
+user_1 = User.create!(first_name: 'DB', last_name: 'Cooper', email: 'db@cooper.com', password_digest: 'password123', phone_number: '111-111-1111', address_1: '1 Main St', address_2: 'Apt 1', address_zipcode: '11111')
+user_2 = User.create!(first_name: 'Homer', last_name: 'Simpson', email: 'homer@simpson.com', password_digest: 'password123', phone_number: '222-222-2222', address_1: '2 Springfield St', address_2: 'Floor 2', address_zipcode: '22222')
+user_3 = User.create!(first_name: 'Linus', last_name: 'Torvalds', email: 'linus@linux.com', password_digest: 'password123', phone_number: '333-333-3333', address_1: '3 Oak St', address_2: 'Suite 3', address_zipcode: '33333')
+user_4 = User.create!(first_name: 'Ralph', last_name: 'Steadman', email: 'ralph@gonzo.com', password_digest: 'password123', phone_number: '444-444-4444', address_1: '4 Vegas Lane', address_2: 'basement', address_zipcode: '44444')
+
+order_status_1 = OrderStatus.create!(status: 'purchased')
+order_status_2 = OrderStatus.create!(status: 'built')
+order_status_3 = OrderStatus.create!(status: 'completed')
+
+
 
 plain = Bagel.create!(bagel_type: 'plain', price: 0.0)
 onion = Bagel.create!(bagel_type: 'onion', price: 0.5)
@@ -9,7 +25,6 @@ whole_wheat = Bagel.create!(bagel_type: 'whole wheat', price: 0.5)
 poppy_seed = Bagel.create!(bagel_type: 'poppyseed', price: 0.5)
 raisin = Bagel.create!(bagel_type: 'cinnamon raison', price: 0.5)
 variety = Bagel.create!(bagel_type: "all the bagels", price: 3.0)
-
 
 
 prod_1 = plain.products.create!(name: 'Small Bagel Box', description: 'plain bagels', price: 12.00, product_type: 'c')
@@ -92,5 +107,13 @@ ingr_in_prod_331 = IngredientsInProduct.create!(product_id: 12, ingredient_id: 9
 ingr_in_prod_331 = IngredientsInProduct.create!(product_id: 12, ingredient_id: 1)
 ingr_in_prod_331 = IngredientsInProduct.create!(product_id: 12, ingredient_id: 3)
 ingr_in_prod_331 = IngredientsInProduct.create!(product_id: 12, ingredient_id: 20)
+
+
+order_1 = Order.create!(taxes: 0.50, delivery_cost: 6.00, subtotal: 6.75, total: 13.25, order_status_id: 1, user_id: 1, discount: 0.00, delivery_type: 'd', delivery_phone: '617-666-6666', delivery_address_1: 'New Address 1', delivery_address_2: 'New Address 2', delivery_address_zipcode: '99999')
+order_item_1_1 = OrderItem.create!(quantity: 1, product_id: 8, order_id: 1, total_price: 6.75, bagel_id: 4)
+order_item_1_2 = OrderItem.create!(quantity: 1, product_id: 9, order_id: 1, total_price: 6.50, bagel_id: 2)
+
+order_2 = Order.create!(taxes: 0.50, delivery_cost: 6.00, subtotal: 6.50, total: 13.00, order_status_id: 1, user_id: 2, discount: 0.00, delivery_type: 'd', delivery_phone: '617-666-6666', delivery_address_1: 'New Address 1', delivery_address_2: 'New Address 2', delivery_address_zipcode: '99999')
+order_item_2_1 = OrderItem.create!(quantity: 1, product_id: 10, order_id: 2, total_price: 6.50, bagel_id: 3)
 
 
