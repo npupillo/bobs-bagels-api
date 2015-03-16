@@ -1,4 +1,5 @@
 class IngredientSerializer < ActiveModel::Serializer
   attributes :id, :name, :price
-  belongs_to :product
+  has_many :products
+  has_many :order_items
 end

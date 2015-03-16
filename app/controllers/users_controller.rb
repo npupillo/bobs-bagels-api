@@ -1,3 +1,5 @@
+require 'pry'
+
 class UsersController < ApplicationController
 	before_filter :authenticate, only: [:index]
 
@@ -11,16 +13,18 @@ class UsersController < ApplicationController
   end
 
   def index
+    binding.pry
     render json: User.all, status: :ok
   end
 
   def show
-    @user = User.find(params[:id])
+    binding.pry
+    @user = User.where(token: params[:id])
     render json: @user
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.where(token: params[:id])
     if @user.update(user_params)
       render json: @user, status: :ok
     else

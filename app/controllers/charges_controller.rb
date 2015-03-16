@@ -61,8 +61,3 @@ end #end ChargesController
 #			render json: {message: 'failed', status: 500}
 #        end
 #	end
-
-
-
-
-

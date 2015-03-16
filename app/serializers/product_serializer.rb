@@ -3,4 +3,5 @@ class ProductSerializer < ActiveModel::Serializer
 	url [:product]
 #	belongs_to :order_items
 	has_many :ingredients
+  belongs_to :bagel
 end
