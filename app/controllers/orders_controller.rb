@@ -13,20 +13,8 @@ class OrdersController < ApplicationController
 	def create
     @user = User.where(token: params[:user_id]).first
 		@order = @user.orders.new(order_params)
-
+		@order.process
 		if @order.save
-			@order.create_order_items
-			binding.pry
-			@order.order_items.each do |item|
-				item.calc_extras
-				item.calc_total_price
-				item.save
-			end
-
-			@order.calc_delivery
-			@order.calc_subtotal
-			@order.calc_total
-			@order.save
 			# render json: @order, status: :created, location: @order
 		else
 			render json: @order.errors,
