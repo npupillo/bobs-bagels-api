@@ -3,7 +3,7 @@ require 'stripe'
 class ChargesController < ApplicationController
 
 	def index
-		@user = User.find_by(token: params[:token])
+		@user = User.find_by(token: params[:token]) # this is the user's login token not their stripe token!
 		@charges = Charge.all
 		render json: @charges
 	end
@@ -40,3 +40,23 @@ class ChargesController < ApplicationController
 		params.require(:charge).permit(:charge, :cart, :token, :store_info) #the front end will have to store the customer id
 	end
 end
+
+#	def make_charge_to_user
+#		@user = User.find(params[:token])
+#		@charge = Charge.new(charge_params)
+#		
+#		Stripe::Customer.retrieve(@charge.customer_id)
+#		
+#		charge = Stripe::Charge.create(
+#			:customer => @user.customer.id,
+#			:amount => amount,
+#			:description => 'Rails Stripe customer',
+#			:currency => 'usd'
+#			)
+#
+#		if @charge.save
+#			render json: { charge: @charge }
+#		else
+#			render json: {message: 'failed', status: 500}
+#        end
+#	end
