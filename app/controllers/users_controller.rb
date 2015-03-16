@@ -4,21 +4,19 @@ class UsersController < ApplicationController
 	before_filter :authenticate, only: [:index]
 
   def sign_in
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
-      render json: {token: user.token }
+    @user = User.find_by(email: params[:email])
+    if @user && @user.authenticate(params[:password])
+      render json: {token: @user.token }
     else
       head :unauthorized
     end
   end
 
   def index
-    binding.pry
     render json: User.all, status: :ok
   end
 
   def show
-    binding.pry
     @user = User.where(token: params[:id])
     render json: @user
   end

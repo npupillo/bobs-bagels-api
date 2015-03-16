@@ -5,6 +5,7 @@ class CreateOrders < ActiveRecord::Migration
       t.decimal :delivery_cost
       t.decimal :subtotal
       t.decimal :total
+      t.string :cart
 
       t.timestamps null: false
     end
