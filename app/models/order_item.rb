@@ -16,6 +16,8 @@ class OrderItem < ActiveRecord::Base
       self.product.ingredients.include?(i) ? total : total += i.price
     end
 
+    self.bagel == self.product.bagel ? total : total += self.bagel.price
+
     total += self.bagel.price
 
     self.extras = total
