@@ -1,11 +1,11 @@
-Bagel.delete_all
-IngredientsInProduct.delete_all
-Product.delete_all
-Ingredient.delete_all
-OrderItem.delete_all
-Order.delete_all
-OrderStatus.delete_all
-User.delete_all
+# Bagel.delete_all
+# IngredientsInProduct.delete_all
+# Product.delete_all
+# Ingredient.delete_all
+# OrderItem.delete_all
+# Order.delete_all
+# OrderStatus.delete_all
+# User.delete_all
 
 user_1 = User.create!(first_name: 'DB', last_name: 'Cooper', email: 'db@cooper.com', password_digest: 'password123', phone_number: '111-111-1111', address_1: '1 Main St', address_2: 'Apt 1', address_zipcode: '11111')
 user_2 = User.create!(first_name: 'Homer', last_name: 'Simpson', email: 'homer@simpson.com', password_digest: 'password123', phone_number: '222-222-2222', address_1: '2 Springfield St', address_2: 'Floor 2', address_zipcode: '22222')
@@ -109,11 +109,11 @@ ingr_in_prod_331 = IngredientsInProduct.create!(product_id: 12, ingredient_id: 3
 ingr_in_prod_331 = IngredientsInProduct.create!(product_id: 12, ingredient_id: 20)
 
 
-order_1 = Order.create!(taxes: 0.50, delivery_cost: 6.00, subtotal: 6.75, total: 13.25, order_status_id: 1, user_id: 1, discount: 0.00, delivery_type: 'd', delivery_phone: '617-666-6666', delivery_address_1: 'New Address 1', delivery_address_2: 'New Address 2', delivery_address_zipcode: '99999')
-order_item_1_1 = OrderItem.create!(quantity: 1, product_id: 8, order_id: 1, total_price: 6.75, bagel_id: 4)
-order_item_1_2 = OrderItem.create!(quantity: 1, product_id: 9, order_id: 1, total_price: 6.50, bagel_id: 2)
+# order_1 = Order.create!(taxes: 0.50, delivery_cost: 6.00, subtotal: 6.75, total: 13.25, order_status_id: 1, user_id: 1, discount: 0.00, delivery_type: 'd', delivery_phone: '617-666-6666', delivery_address_1: 'New Address 1', delivery_address_2: 'New Address 2', delivery_address_zipcode: '99999')
+# order_item_1_1 = OrderItem.create!(quantity: 1, product_id: 8, order_id: 1, total_price: 6.75, bagel_id: 4)
+# order_item_1_2 = OrderItem.create!(quantity: 1, product_id: 9, order_id: 1, total_price: 6.50, bagel_id: 2)
 
-order_2 = Order.create!(taxes: 0.50, delivery_cost: 6.00, subtotal: 6.50, total: 13.00, order_status_id: 1, user_id: 2, discount: 0.00, delivery_type: 'd', delivery_phone: '617-666-6666', delivery_address_1: 'New Address 1', delivery_address_2: 'New Address 2', delivery_address_zipcode: '99999')
-order_item_2_1 = OrderItem.create!(quantity: 1, product_id: 10, order_id: 2, total_price: 6.50, bagel_id: 3)
+# order_2 = Order.create!(taxes: 0.50, delivery_cost: 6.00, subtotal: 6.50, total: 13.00, order_status_id: 1, user_id: 2, discount: 0.00, delivery_type: 'd', delivery_phone: '617-666-6666', delivery_address_1: 'New Address 1', delivery_address_2: 'New Address 2', delivery_address_zipcode: '99999')
+# order_item_2_1 = OrderItem.create!(quantity: 1, product_id: 10, order_id: 2, total_price: 6.50, bagel_id: 3)
 
 
