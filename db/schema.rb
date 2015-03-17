@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316000708) do
+ActiveRecord::Schema.define(version: 20150317192017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,9 +28,12 @@ ActiveRecord::Schema.define(version: 20150316000708) do
     t.string   "customer_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.string   "cart"
     t.boolean  "store_info"
+    t.integer  "order_id"
+    t.integer  "amount"
   end
+
+  add_index "charges", ["order_id"], name: "index_charges_on_order_id", using: :btree
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
@@ -89,6 +92,9 @@ ActiveRecord::Schema.define(version: 20150316000708) do
     t.decimal  "subtotal"
     t.decimal  "total"
     t.string   "cart"
+    t.string   "token"
+    t.boolean  "store_info"
+    t.boolean  "return_customer"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "order_status_id"
@@ -131,6 +137,7 @@ ActiveRecord::Schema.define(version: 20150316000708) do
     t.string   "customer_id"
   end
 
+  add_foreign_key "charges", "orders"
   add_foreign_key "order_items", "bagels"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"

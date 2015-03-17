@@ -11,14 +11,11 @@ class OrderItem < ActiveRecord::Base
 
   def calc_extras
     total = 0
-
     self.ingredients.each do |i|
       self.product.ingredients.include?(i) ? total : total += i.price
     end
 
-    self.bagel == self.product.bagel ? total : total += self.bagel.price
-
-    total += self.bagel.price
+    self.bagel == self.product.bagel ? total : total += (self.bagel.price || 0)
 
     self.extras = total
   end
