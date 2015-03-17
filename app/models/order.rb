@@ -48,7 +48,6 @@ class Order < ActiveRecord::Base
     self.calc_tax
     self.calc_total
     charge_amount = (self.total * 100).to_i
-    binding.pry
     self.charge = Charge.create(amount: charge_amount, token: self.token)
     self.charge.make_charge
   end

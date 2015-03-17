@@ -22,7 +22,6 @@ class Charge < ActiveRecord::Base
       :source => self.order.user.customer_id
                 })
     else
-      binding.pry
       Stripe::Charge.create({
         :amount => self.amount,
         :currency => "usd",
