@@ -6,6 +6,9 @@ class CreateOrders < ActiveRecord::Migration
       t.decimal :subtotal
       t.decimal :total
       t.string :cart
+      t.string :token
+      t.boolean :store_info
+      t.boolean :return_customer
 
       t.timestamps null: false
     end
