@@ -7,11 +7,15 @@ class Order < ActiveRecord::Base
   BOSTONZIPS = ["02210", "02108", "02109", "02110", "02111", "02113", "02203"]
 
   def calc_subtotal
-    self.subtotal = self.order_items.map {|item| item.total_price}.reduce(:+)
+    self.subtotal = self.order_items.map {|item| item.total_price}.reduce(:+) + self.delivery_cost
   end
 
   def calc_total
-    self.total = ((self.subtotal + self.delivery_cost) * 1.07).round(2)
+    self.total = self.subtotal + self.taxes
+  end
+
+  def calc_tax
+    self.taxes = (self.subtotal * 0.07).round(2)
   end
 
   def calc_delivery
@@ -37,6 +41,7 @@ class Order < ActiveRecord::Base
     end
 
     self.calc_delivery
+    self.calc_taxes
     self.calc_subtotal
     self.calc_total
   end
