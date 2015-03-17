@@ -16,4 +16,5 @@ class User < ActiveRecord::Base
 #	user = User.find_by(email: params[:email])
 #	return user.customer_id
 # end
+
 end
