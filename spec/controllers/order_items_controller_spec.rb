@@ -11,12 +11,12 @@ RSpec.describe OrderItemsController, :type => :controller do
   #     end
   #   end
 
-   describe '#create order_items' do
+  #  describe '#create order_items' do
 
-    it 'creates a new entry for a product' do
-      expect(Order_items.new(order_items_params)).to be_a Order_items
-    end
-  end
+  #   it 'creates a new entry for a product' do
+  #     expect(Order_items.new(order_items_params)).to be_a Order_items
+  #   end
+  # end
 
 #   describe "GET show" do
 #   it "request a single order_items" do
