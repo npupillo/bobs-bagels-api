@@ -9,7 +9,7 @@ class ChargesController < ApplicationController
 
 	def make_charge
 		@charge = Charge.new(charge_params)
-		
+
 		@amount = 100 # this is temporary!
 		if @charge.store_info == true
 			customer = Stripe::Customer.create(
@@ -38,3 +38,5 @@ class ChargesController < ApplicationController
 	def charge_params
 		params.require(:charge).permit(:charge, :cart, :token, :store_info) #the front end will have to store the customer id
 	end
+
+end
