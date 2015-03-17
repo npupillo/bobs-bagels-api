@@ -27,22 +27,22 @@ end
 
 
 
- describe "DELETE destroy" do
-  it "destroys the requested product" do
-    product = Product.create!(name: 'bagel')
-    expect do
-      delete :destroy, {:id => product.to_param}
-    end.to change(Product, :count).by(-1)
-  end
-end
-  describe "update product" do
-  it "updates a product" do
-      product = Product.create!(name: "bagel")
-        put :update, {:id => product.to_param, :name => "new bagel"}
-        product.reload
+#  describe "DELETE destroy" do
+#   it "destroys the requested product" do
+#     product = Product.create!(name: 'bagel')
+#     expect do
+#       delete :destroy, {:id => product.to_param}
+#     end.to change(Product, :count).by(-1)
+#   end
+# end
+#   describe "update product" do
+#   it "updates a product" do
+#       product = Product.create!(name: "bagel")
+#         put :update, {:id => product.to_param, :name => "new bagel"}
+#         product.reload
 
-      end
-    end
+#       end
+    # end
 
 
 
