@@ -19,7 +19,7 @@ class Charge < ActiveRecord::Base
       Stripe::Charge.create({
       :amount => self.amount,
       :currency => "usd",
-      :source => self.order.user.customer_id
+      :customer => self.order.user.customer_id
                 })
     else
       Stripe::Charge.create({
