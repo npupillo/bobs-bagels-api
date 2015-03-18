@@ -18,8 +18,14 @@ class Order < ActiveRecord::Base
     self.taxes = (self.subtotal * 0.07).round(2)
   end
 
+  def calc_extras
+    binding.pry
+    self.extras = self.order_items.map {|item| item.extras}.reduce(:+)
+    binding.pry
+  end
+
   def calc_delivery
-    if self.delivery_address_zipcode == nil
+    if self.delivery_address_zipcode == "undefined"
       self.delivery_cost = 0.0
     else
       BOSTONZIPS.include?(self.delivery_address_zipcode) ? self.delivery_cost = 6.00 : self.delivery_cost = 10.00
@@ -29,9 +35,10 @@ class Order < ActiveRecord::Base
   def create_order_items
     cart = JSON.parse(self.cart)
     cart.each do |item|
-      @order_item = self.order_items.new(product_id: item['product_id'], quantity: item['quantity'], bagel_id: item['bagel'])
+      @order_item = self.order_items.create(product_id: item['product_id'], quantity: item['quantity'], bagel_id: item['bagel'])
+      binding.pry
       item['ingredients'].each do |ingredient|
-        IngredientsAndOrder.new(order_item_id: @order_item.id, ingredient_id: ingredient)
+        IngredientsAndOrder.create(order_item_id: @order_item.id, ingredient_id: ingredient)
       end
     end
   end
@@ -43,6 +50,7 @@ class Order < ActiveRecord::Base
       item.calc_extras
       item.calc_total_price
     end
+    self.calc_extras
     self.calc_delivery
     self.calc_subtotal
     self.calc_tax
