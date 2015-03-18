@@ -13,37 +13,42 @@ class UsersController < ApplicationController
 
   def retrieve_customer
 	  @user = User.find_by(user_params)
-	  render json: { user_cards: @user.get_customer_cards, user_info: @user.get_customer_info }
+	  render json: @user.get_customer_info
   end
 
   def update_customer
 	  @user = User.find_by(user_params)
 	  @user.update_customer_info
-	  render json: { user_info: @user.get_customer_info }
+	  render json: @user.get_customer_info
   end
 
   def delete_customer
 	  @user = User.find_by(user_params)
 	  @user.delete_customer
-	  render json: { user_info: @user }
+	  render json: @user
   end
-
+	
+  def retrieve_card
+	  @user = User.find_by(user_params)
+	  render json: @user.get_customer_cards
+  end
+	  
   def add_card
 	 @user = User.find_by(user_params)
 	 @user.add_card
-	 render json: { user_cards: @user.get_customer_cards }
+	 render json: @user.get_customer_cards
   end
 
   def update_card
 	  @user = User.find_by(user_params)
 	  @user.update_customer_card
-	  render json: { user_cards: @user.get_customer_cards }
+	  render json: @user.get_customer_cards
   end
 
   def delete_card
 	  @user = User.find_by(user_params)
 	  @user.delete_customer_card
-	  render json: { user_cards: @user.get_customer_cards }
+	  render json: @user.get_customer_cards
   end
 
   def index
@@ -56,7 +61,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.where(token: params[:id])
+    # @user = User.where(token: params[:id]) #user token not working for update user
+    @user = User.find(params[:id])
     if @user.update(user_params)
       render json: @user, status: :ok
     else
@@ -65,7 +71,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(token: params[:token])
+    @user = User.new(user_params)
     if @user.save
       render json: { token: @user.token }
     else

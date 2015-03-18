@@ -15,7 +15,7 @@ user_4 = User.create!(first_name: 'Ralph', last_name: 'Steadman', email: 'ralph@
 order_status_1 = OrderStatus.create!(status: 'purchased')
 order_status_2 = OrderStatus.create!(status: 'built')
 order_status_3 = OrderStatus.create!(status: 'completed')
-
+	
 
 
 plain = Bagel.create!(bagel_type: 'plain', price: 0.0)
