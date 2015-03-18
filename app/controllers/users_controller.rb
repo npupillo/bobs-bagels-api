@@ -1,3 +1,4 @@
+require 'stripe'
 class UsersController < ApplicationController
 	before_filter :authenticate, only: [:index]
 
@@ -8,6 +9,41 @@ class UsersController < ApplicationController
     else
       head :unauthorized
     end
+  end
+	
+  def retrieve_customer
+	  @user = User.find_by(user_params)
+	  render json: { user_cards: @user.get_customer_cards, user_info: @user.get_customer_info }
+  end
+	
+  def update_customer
+	  @user = User.find_by(user_params)
+	  @user.update_customer_info
+	  render json: { user_info: @user.get_customer_info }
+  end
+	
+  def delete_customer
+	  @user = User.find_by(user_params)
+	  @user.delete_customer
+	  render json: { user_info: @user }
+  end
+	
+  def add_card
+	 @user = User.find_by(user_params)
+	 @user.add_card
+	 render json: { user_cards: @user.get_customer_cards }
+  end
+	
+  def update_card
+	  @user = User.find_by(user_params)
+	  @user.update_customer_card
+	  render json: { user_cards: @user.get_customer_cards }
+  end
+	
+  def delete_card
+	  @user = User.find_by(user_params)
+	  @user.delete_customer_card
+	  render json: { user_cards: @user.get_customer_cards }
   end
 
   def index
@@ -29,7 +65,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(token: params[:token])
     if @user.save
       render json: { token: @user.token }
     else
@@ -40,6 +76,6 @@ class UsersController < ApplicationController
 	private
 
 	def user_params
-        params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :token)
+        params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :token, :card_token, :card_params)
 	end
 end
