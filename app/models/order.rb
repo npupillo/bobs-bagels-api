@@ -19,9 +19,7 @@ class Order < ActiveRecord::Base
   end
 
   def calc_extras
-    binding.pry
     self.extras = self.order_items.map {|item| item.extras}.reduce(:+)
-    binding.pry
   end
 
   def calc_delivery
@@ -36,7 +34,6 @@ class Order < ActiveRecord::Base
     cart = JSON.parse(self.cart)
     cart.each do |item|
       @order_item = self.order_items.create(product_id: item['product_id'], quantity: item['quantity'], bagel_id: item['bagel'])
-      binding.pry
       item['ingredients'].each do |ingredient|
         IngredientsAndOrder.create(order_item_id: @order_item.id, ingredient_id: ingredient)
       end
