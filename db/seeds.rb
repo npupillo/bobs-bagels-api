@@ -7,7 +7,7 @@
 # OrderStatus.delete_all
 # User.delete_all
 
-user_1 = User.create!(first_name: 'DB', last_name: 'Cooper', email: 'db@cooper.com', password_digest: 'password123', phone_number: '111-111-1111', address_1: '1 Main St', address_2: 'Apt 1', address_zipcode: '11111', customer_id: "	cus_5tIF2YEwF2eQIB")
+user_1 = User.create!(first_name: 'DB', last_name: 'Cooper', email: 'db@cooper.com', password_digest: 'password123', phone_number: '111-111-1111', address_1: '1 Main St', address_2: 'Apt 1', address_zipcode: '11111')
 user_2 = User.create!(first_name: 'Homer', last_name: 'Simpson', email: 'homer@simpson.com', password_digest: 'password123', phone_number: '222-222-2222', address_1: '2 Springfield St', address_2: 'Floor 2', address_zipcode: '22222')
 user_3 = User.create!(first_name: 'Linus', last_name: 'Torvalds', email: 'linus@linux.com', password_digest: 'password123', phone_number: '333-333-3333', address_1: '3 Oak St', address_2: 'Suite 3', address_zipcode: '33333')
 user_4 = User.create!(first_name: 'Ralph', last_name: 'Steadman', email: 'ralph@gonzo.com', password_digest: 'password123', phone_number: '444-444-4444', address_1: '4 Vegas Lane', address_2: 'basement', address_zipcode: '44444')
@@ -15,7 +15,7 @@ user_4 = User.create!(first_name: 'Ralph', last_name: 'Steadman', email: 'ralph@
 order_status_1 = OrderStatus.create!(status: 'purchased')
 order_status_2 = OrderStatus.create!(status: 'built')
 order_status_3 = OrderStatus.create!(status: 'completed')
-
+	
 
 
 plain = Bagel.create!(bagel_type: 'plain', price: 0.0)
