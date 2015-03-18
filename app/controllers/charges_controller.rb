@@ -1,5 +1,3 @@
-
-
 class ChargesController < ApplicationController
 
     def index

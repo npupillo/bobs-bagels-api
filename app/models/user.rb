@@ -21,12 +21,12 @@ class User < ActiveRecord::Base
   end
 
   def add_customer_card
-	  customer = Stripe::Customer.retrieve({self.customer_id})
+	  customer = Stripe::Customer.retrieve(self.customer_i)
 	  customer.sources.create({:source => self.card_token})
   end
 	  
   def update_customer_info
-	  customer = Stripe::Customer.retrieve({self.customer_id})
+	  customer = Stripe::Customer.retrieve(self.customer_id)
 	  customer.card = self.card_token
 	  customer.save
   end
@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
   end
 	  
   def delete_customer
-	  customer = Stripe::Customer.retrieve({CUSTOMER_ID})
+	  customer = Stripe::Customer.retrieve(self.customer_id)
 	  customer.delete
   end
 	  
