@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :users, defaults: { format: :json }, only: [:show, :index, :create, :update] do
     post 'sign_in', on: :collection
 	  post 'retrieve_customer', on: :collection
-	  post 'add_card', on: :collection
+	  post 'retrieve_card', on: :collection
     resources :orders, only: [:create, :update, :destroy]
   end
 
