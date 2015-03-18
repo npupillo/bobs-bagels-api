@@ -65,7 +65,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(token: params[:token])
+    @user = User.new(user_params)
     if @user.save
       render json: { token: @user.token }
     else
