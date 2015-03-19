@@ -17,15 +17,15 @@ describe 'Products requests' do
     end
   end #describe '#index'
 
-   describe '#show' do
-    it 'should retrieve a single product by id and return json' do
-      @product = @products.first
-      get "/products/#{@product.id}"
-      expect(response).to be_success
+  #  describe '#show' do
+  #   it 'should retrieve a single product by id and return json' do
+  #     @product = @products.first
+  #     get "/products/#{@product.id}"
+  #     expect(response).to be_success
 
-      product = JSON.parse(response.body)
-      expect(product['name']).to eq @product.name
-    end
-  end #describe '#show'
+  #     product = JSON.parse(response.body)
+  #     expect(product['name']).to eq @product.name
+  #   end
+  # end #describe '#show'
 
 end

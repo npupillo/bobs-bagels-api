@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe ChargesController, :type => :controller do
 
 
-    describe "GET index" do
-        it "shows index" do
-        get :index
-        expect(response).to be_success
-      end
-    end
+    # describe "GET index" do
+    #     it "shows index" do
+    #     get :index
+    #     expect(response).to be_success
+    #   end
+    # end
 
 
 

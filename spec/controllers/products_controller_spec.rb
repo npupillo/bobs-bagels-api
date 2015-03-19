@@ -17,13 +17,13 @@ RSpec.describe ProductsController, :type => :controller do
     end
   end
 
-  describe "GET show" do
-  it "request a single product" do
-    product = Product.create!(name: "simple bagel")
-    get :show, {:id => product.to_param}
-    expect(response).to be_success
-  end
-end
+#   describe "GET show" do
+#   it "request a single product" do
+#     product = Product.create!(name: "simple bagel")
+#     get :show, {:id => product.to_param}
+#     expect(response).to be_success
+#   end
+# end
 
 
 
