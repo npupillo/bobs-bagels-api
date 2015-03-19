@@ -27,12 +27,12 @@ class UsersController < ApplicationController
 	  @user.delete_customer
 	  render json: @user
   end
-	
+
   def retrieve_card
 	  @user = User.find_by(user_params)
 	  render json: @user.get_customer_cards
   end
-	  
+
   def add_card
 	 @user = User.find_by(user_params)
 	 @user.add_card
@@ -82,6 +82,6 @@ class UsersController < ApplicationController
 	private
 
 	def user_params
-        params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :address_1, :address_2, :address_zipcode, :password, :password_confirmation, :token, :card_token, :card_params)
+        params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :address_1, :address_2, :address_zipcode, :password, :password_confirmation, :token, :card_token, :card_params, :customer_id)
 	end
 end
