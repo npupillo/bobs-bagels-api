@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 	  post 'retrieve_card', on: :collection
 	  post 'add_card', on: :collection
     resources :orders, only: [:create, :update, :destroy]
+      post 'add_card', on: :collection
+      post 'remove_card', on: :collection
   end
 
   resources :order_statuses, only: [:create, :update, :destroy]
