@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     post 'sign_in', on: :collection
 	  post 'retrieve_customer', on: :collection
 	  post 'retrieve_card', on: :collection
+	  post 'add_card', on: :collection
     resources :orders, only: [:create, :update, :destroy]
       post 'add_card', on: :collection
       post 'remove_card', on: :collection
