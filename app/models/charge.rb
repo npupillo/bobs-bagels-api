@@ -15,7 +15,7 @@ class Charge < ActiveRecord::Base
         )
       self.order.user.customer_id = customer.id
       self.order.user.save
-    elsif self.order.return_customer == true
+    elsif self.order.customer_id != "undefined"
       Stripe::Charge.create({
       :amount => self.amount,
       :currency => "usd",
@@ -29,5 +29,5 @@ class Charge < ActiveRecord::Base
       })
     end
   end
-
+# discounts and coupons will go here.
 end

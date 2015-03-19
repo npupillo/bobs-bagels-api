@@ -10,10 +10,10 @@ class OrdersController < ApplicationController
 
 	def create
     @user = User.where(token: params[:user_id]).first
-		@order = @user.orders.new(order_params)
+		@order = @user.orders.create(order_params)
 		@order.process
 		if @order.save
-			# render json: @order, status: :created, location: @order
+		render json: {data: @order}, status: :created
 		else
 			render json: @order.errors,
 			status: :unprocessable_entity
@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
 	private
 
 	def order_params
-		params.require(:order).permit(:taxes, :cart, :delivery_cost, :subtotal, :total, :delivery_type, :delivery_phone, :delivery_phone, :delivery_address_1, :delivery_address_2, :delivery_address_zipcode, :token, :customer_id, :return_customer, :store_info)
+		params.require(:order).permit(:taxes, :cart, :delivery_cost, :subtotal, :total, :delivery_type, :delivery_phone, :delivery_phone, :delivery_address_1, :delivery_address_2, :delivery_address_zipcode, :token, :store_info, :extras, :customer_id, :created_at)
 	end
 
 
